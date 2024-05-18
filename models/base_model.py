@@ -28,19 +28,20 @@ class BaseModel:
         """
         to_dict method
         """
-        new_dict = self.__dict__.copy()
-        new_dict['__class__'] = self.__class__.__name__
-        new_dict['created_at'] = self.created_at.isoformat()
-        new_dict['updated_at'] = self.updated_at.isoformat()
+        inst_dict = self.__dict__.copy()
+        inst_dict["__class__"] = self.__class__.__name__
+        inst_dict["created_at"] = self.created_at.isoformat()
+        inst_dict["updated_at"] = self.updated_at.isoformat()
 
-        return new_dict
+        return inst_dict
 
     def __str__(self):
         """
         __str__ method
         """
-        cn = self.__class__.__name__
-        return "[{}] ({}) {}".format(cn, self.id, self.__dict__)
+        class_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
+
 
 if __name__ == "__main__":
     my_model = BaseModel()
