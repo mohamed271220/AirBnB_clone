@@ -42,11 +42,10 @@ class BaseModel:
         cn = self.__class__.__name__
         return "[{}] ({}) {}".format(cn, self.id, self.__dict__)
 
-
 if __name__ == "__main__":
     my_model = BaseModel()
-    my_model.name = "1st"
-    my_model.my_number = 555
+    my_model.name = "My_First_Model"
+    my_model.my_number = 89
     print(my_model.id)
     print(my_model)
     print(type(my_model.created_at))
