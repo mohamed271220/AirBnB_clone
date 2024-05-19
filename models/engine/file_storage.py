@@ -7,6 +7,8 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.city import City
+
+
 class FileStorage:
     """
     FileStorage class
@@ -19,7 +21,7 @@ class FileStorage:
         all method
         """
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """
         new method
@@ -33,7 +35,7 @@ class FileStorage:
         new_dict = {}
         for key, value in FileStorage.__objects.items():
             new_dict[key] = value.to_dict()
-        with open(FileStorage.__file_path, 'w', encoding = "utf-8") as f:
+        with open(FileStorage.__file_path, 'w', encoding="utf-8") as f:
             json.dump(new_dict, f)
 
     def reload(self):
@@ -41,11 +43,5 @@ class FileStorage:
         reload method
         """
         if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r', encoding = "utf-8") as f:
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
                 try:
-                    new_dict = json.load(f)
-                    for key, value in new_dict.items():
-                        obj = eval(value["__class__"])(**value)
-                        FileStorage.__objects[key] = obj
-                except Exception:
-                    pass
