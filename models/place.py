@@ -9,7 +9,6 @@ class Place(BaseModel):
     """
     Represent a place.
     """
-
     city_id = ""
     user_id = ""
     name = ""

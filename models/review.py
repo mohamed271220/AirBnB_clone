@@ -9,7 +9,6 @@ class Review(BaseModel):
     """
     Represent a review.
     """
-
     place_id = ""
     user_id = ""
     text = ""
