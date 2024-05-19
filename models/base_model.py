@@ -4,6 +4,8 @@ base model
 """
 import uuid
 from datetime import datetime
+import models
+
 
 class BaseModel:
     """
@@ -26,12 +28,14 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
-    
+        models.storage.new(self)
+
     def save(self):
         """
         save method
         """
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def to_dict(self):
         """
