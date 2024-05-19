@@ -7,13 +7,14 @@ import shlex
 from models.base_model import BaseModel
 from models import storage
 import re
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
     HBNBCommand class
     """
     prompt = '(hbnb) '
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """
@@ -50,8 +51,8 @@ class HBNBCommand(cmd.Cmd):
         elif command[0] not in self.classes:
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
-            new_instance.save()
+            new_instance = eval(f"{command[0]}()")
+            storage.save()
             print(new_instance.id)
 
     def do_show(self, line):
